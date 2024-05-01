@@ -17,10 +17,12 @@ class MarketDataPagingSource(private val apiController: ApiController) :
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MarketCoin> {
         return try {
             val currentPage = params.key ?: 1
+            // data from network, crash with OutOfMemoryError
             val marketCoins = apiController.getMarketData(
                 page = currentPage,
                 numCoinsPerPage = PAGE_SIZE
             )
+            // data build in locally, work smoothly
 //            val marketCoins = ((currentPage * PAGE_SIZE) until (currentPage + 1) * PAGE_SIZE).map {
 //                println("=== $it")
 //                buildMarketCoin(it.toString())
