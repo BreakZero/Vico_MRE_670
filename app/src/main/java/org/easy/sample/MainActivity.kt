@@ -38,14 +38,13 @@ import com.patrykandpatrick.vico.compose.cartesian.axis.rememberBottomAxis
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberStartAxis
 import com.patrykandpatrick.vico.compose.cartesian.fullWidth
 import com.patrykandpatrick.vico.compose.cartesian.layer.rememberLineCartesianLayer
-import com.patrykandpatrick.vico.compose.cartesian.rememberCartesianChart
 import com.patrykandpatrick.vico.core.cartesian.HorizontalLayout
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.core.cartesian.data.lineSeries
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.isActive
 import kotlinx.coroutines.withContext
 import org.easy.sample.ui.theme.Vico_670_MRETheme
+import com.patrykandpatrick.vico.compose.cartesian.rememberCartesianChart as rememberCartesianChart1
 
 class MainActivity : ComponentActivity() {
     private val mainViewModel: MainViewModel by viewModels()
@@ -88,10 +87,8 @@ internal fun MarketCoinItem(
     }
     LaunchedEffect(Unit) {
         withContext(Dispatchers.IO) {
-            while (isActive) {
-                modelProducer.tryRunTransaction {
-                    lineSeries { series(marketCoin.price) }
-                }
+            modelProducer.tryRunTransaction {
+                lineSeries { series(marketCoin.price) }
             }
         }
     }
@@ -120,10 +117,10 @@ internal fun MarketCoinItem(
                 MaterialTheme.colorScheme.error
             } else MaterialTheme.colorScheme.tertiary
             CartesianChartHost(
-//                modifier = Modifier
-//                    .height(48.dp)
-//                    .aspectRatio(2.0f),
-                chart = rememberCartesianChart(
+                modifier = Modifier
+                    .height(48.dp)
+                    .aspectRatio(2.0f),
+                chart = rememberCartesianChart1(
                     rememberLineCartesianLayer(),
                     startAxis = rememberStartAxis(
                         label = null,

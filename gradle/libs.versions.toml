@@ -8,7 +8,7 @@ espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.9.0"
 composeBom = "2023.08.00"
-vico = "2.0.0-alpha.16"
+vico = "2.0.0-alpha.19"
 pagingCompose = "3.2.1"
 
 [libraries]

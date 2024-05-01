@@ -18,8 +18,8 @@ fun buildMarketCoin(id: String): MarketCoin {
         symbol = "BTC_$id",
         name = "Bitcoin_$id",
         image = "https://assets.coingecko.com/coins/images/11795/large/Untitled_design-removebg-preview.png?1696511671",
-        currentPrice = 24567.0,
+        currentPrice = 66666.0,
         priceChangePercentage24h = 0.005,
-        price = List(100) { Random.nextDouble() }
+        price = List(168) { Random.nextDouble(40000.0 , 70000.0) }
     )
 }
