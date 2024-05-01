@@ -9,12 +9,16 @@ import androidx.paging.cachedIn
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.stateIn
+import org.easy.sample.network.ApiController
 
 class MainViewModel: ViewModel() {
+
+    private val apiController = ApiController()
+
     private val marketPager = Pager(
         config = PagingConfig(pageSize = Int.MAX_VALUE, prefetchDistance = 2),
         pagingSourceFactory = {
-            MarketDataPagingSource()
+            MarketDataPagingSource(apiController)
         }
     )
 

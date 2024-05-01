@@ -38,9 +38,13 @@ import com.patrykandpatrick.vico.compose.cartesian.axis.rememberBottomAxis
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberStartAxis
 import com.patrykandpatrick.vico.compose.cartesian.fullWidth
 import com.patrykandpatrick.vico.compose.cartesian.layer.rememberLineCartesianLayer
+import com.patrykandpatrick.vico.compose.cartesian.layer.rememberLineSpec
+import com.patrykandpatrick.vico.compose.cartesian.rememberCartesianChart
+import com.patrykandpatrick.vico.compose.common.shader.color
 import com.patrykandpatrick.vico.core.cartesian.HorizontalLayout
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.core.cartesian.data.lineSeries
+import com.patrykandpatrick.vico.core.common.shader.DynamicShader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.easy.sample.ui.theme.Vico_670_MRETheme
@@ -120,8 +124,8 @@ internal fun MarketCoinItem(
                 modifier = Modifier
                     .height(48.dp)
                     .aspectRatio(2.0f),
-                chart = rememberCartesianChart1(
-                    rememberLineCartesianLayer(),
+                chart = rememberCartesianChart(
+                    rememberLineCartesianLayer(listOf(rememberLineSpec(DynamicShader.color(graphColor)))),
                     startAxis = rememberStartAxis(
                         label = null,
                         axis = null,
